@@ -1,10 +1,10 @@
 import { server as karma } from "karma";
 
-export default function (gulp) {
+export default (gulp) => {
   gulp.task("test", () => {
     karma.start({
-      configFile: "../karma.conf.js",
+      configFile: __dirname + "/../karma.conf.js",
       singleRun: false
     });
   });
-}
+};

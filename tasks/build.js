@@ -1,4 +1,4 @@
-module.exports = (gulp, plugins) => {
+export default (gulp, plugins) => {
   gulp.task("build", done => {
     plugins.runSequence(
       "build-clean",

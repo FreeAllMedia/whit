@@ -8,5 +8,6 @@ const taskFiles = require("fs").readdirSync(tasksPath);
 
 const plugins = loadPlugins();
 plugins.runSequence = runSequence;
+plugins.webpack = require("webpack");
 
-taskFiles.forEach(taskFile => require(path.join(tasksPath, taskFile))(gulp, plugins));
+taskFiles.forEach(taskFile => require(path.join(tasksPath, taskFile)).default(gulp, plugins));
