@@ -35,6 +35,7 @@ export default class Whit {
   on(eventName, eventHandler)     { return this[include]("on", eventName, eventHandler); }
   trigger(eventName)              { return this[include]("trigger", eventName); }
   forwardEventsTo(view)           { return this[include]("forwardEventsTo", view); }
+  forwardChildrenTo(view)         { return this[include]("forwardChildrenTo", view); }
   toString()                      { return this[include]("toString"); }
 
   /* Private Methods */
@@ -54,6 +55,7 @@ export default class Whit {
     this.contents(options.contents);
     this.children(options.children);
     this.forwardEventsTo(options.forwardEventsTo);
+    this.forwardChildrenTo(options.forwardChildrenTo);
 
     for (let eventName in options.on) {
       const eventHandler = options.on[eventName];
