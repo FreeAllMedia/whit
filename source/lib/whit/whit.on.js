@@ -1,4 +1,11 @@
+import privateData from "../utility/privateData.js";
+
 export default function on(eventName, eventHandler) {
-  this.element.addEventListener(eventName, eventHandler);
+  let view = privateData(this).forwardEventsTo || this;
+
+  view.element.addEventListener(eventName, event => {
+    eventHandler(view, event);
+  });
+
   return this;
 }

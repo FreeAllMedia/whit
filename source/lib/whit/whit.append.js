@@ -12,7 +12,9 @@ export default function append(...newChildren) {
 
   newChildren
     .map(childView => childView.element)
-    .forEach(element => this.element.appendChild(element));
+    .forEach(element => {
+      this.element.appendChild(element);
+    });
 
   return this;
 }

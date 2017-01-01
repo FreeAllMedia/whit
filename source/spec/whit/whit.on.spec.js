@@ -19,6 +19,23 @@ describe("view.on(eventName, eventHandler)", () => {
     someHandler.called.should.be.true;
   });
 
+  it("should callback with the view as the first argument", () => {
+    const someHandler = sinon.spy();
+    view.on("click", someHandler);
+    const event = new Event("click");
+    view.element.dispatchEvent(event);
+    someHandler.calledWith(view).should.be.true;
+  });
+
+  it("should callback with the event as the second argument", () => {
+    const someHandler = sinon.spy();
+    view.on("click", someHandler);
+    const event = new Event("click");
+    view.element.dispatchEvent(event);
+    someHandler.calledWith(view, event).should.be.true;
+  });
+
+
   it("should be settable via options", () => {
     const on = {
       click: sinon.spy()

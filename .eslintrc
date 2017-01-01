@@ -11,7 +11,9 @@
         "jasmine": false,
         "es6": true
     },
-
+    "globals": {
+        "sinon": true
+    },
     "rules": {
         "no-alert": 2,
         "no-array-constructor": 2,

@@ -22,7 +22,13 @@ describe("view.attribute([newContents])", () => {
   it("should return self when setting to enable chaining", () => {
     view.attribute("class", "something").should.eql(view);
   });
-  //
+
+  it("should remove attributes when they are set to an empty string", () => {
+    view.attribute("value", "abc123");
+    view.attribute("value", "");
+    (view.attribute("value") === null).should.be.true;
+  });
+
   // it("should be settable", () => {
   //   const attribute = "Hello, Bob.";
   //   view.attribute(attribute);

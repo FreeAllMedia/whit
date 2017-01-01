@@ -1,4 +1,8 @@
+import privateData from "../utility/privateData.js";
+
 export default function trigger(eventName) {
-  this.element.dispatchEvent(new Event(eventName));
+  let view = privateData(this).forwardEventsTo || this;
+
+  view.element.dispatchEvent(new Event(eventName));
   return this;
 }

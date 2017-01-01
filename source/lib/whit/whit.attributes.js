@@ -9,7 +9,7 @@ export default function attributes(newAttributeValues) {
     const attributeValues = {};
     const attributesArray = Array.prototype.slice.call(this.element.attributes);
     attributesArray.forEach(attribute => {
-      attributeValues[attribute.name] = attribute.value;
+      attributeValues[attribute.name] = this.attribute(attribute.name);
     });
     return attributeValues;
   }
