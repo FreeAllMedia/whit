@@ -13,9 +13,10 @@ export default function append(...newChildren) {
     _.children = _.children || [];
     _.children = _.children.concat(newChildren);
 
-    newChildren
-      .map(childView => childView.element)
-      .forEach(element => this.element.appendChild(element));
+    newChildren.forEach(childView => {
+      this.element.appendChild(childView.element);
+      childView.trigger("mount", this);
+    });
   }
 
   return this;

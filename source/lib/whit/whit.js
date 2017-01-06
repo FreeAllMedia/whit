@@ -1,7 +1,6 @@
 import privateData from "../utility/privateData.js";
 
-const include = Symbol(),
-      setDefaults = Symbol();
+const include = Symbol();
 
 export default class Whit {
   /* eslint-disable no-multi-spaces */
@@ -9,10 +8,11 @@ export default class Whit {
     options = options || {};
 
     this.initialize(options);
-    this[setDefaults](options);
+    this[include]("setDefaults", options);
   }
 
-  initialize() {} // Stubbed for SubView overriding
+  // Stubs for SubView overriding
+  initialize() {}
 
   /* Read-Only Properties */
   get element() { return privateData(this).element; }
@@ -21,6 +21,8 @@ export default class Whit {
   /* Attributes */
   id(newId)                       { return this[include]("id", newId); }
   className(newClassName)         { return this[include]("className", newClassName); }
+  appendClassName(newClassName)   { return this[include]("appendClassName", newClassName); }
+  removeClassName(className)      { return this[include]("removeClassName", className); }
   attribute(name, value)          { return this[include]("attribute", name, value); }
   attributes(newAttributeValues)  { return this[include]("attributes", newAttributeValues); }
 
@@ -33,7 +35,7 @@ export default class Whit {
 
   /* Events */
   on(eventName, eventHandler)     { return this[include]("on", eventName, eventHandler); }
-  trigger(eventName)              { return this[include]("trigger", eventName); }
+  trigger(eventName, ...args)     { return this[include]("trigger", eventName, ...args); }
   forwardEventsTo(view)           { return this[include]("forwardEventsTo", view); }
   forwardChildrenTo(view)         { return this[include]("forwardChildrenTo", view); }
   toString()                      { return this[include]("toString"); }
@@ -41,25 +43,5 @@ export default class Whit {
   /* Private Methods */
   [include](filename, ...functionArguments) {
     return require(`./whit.${filename}.js`).default.apply(this, functionArguments);
-  }
-
-  [setDefaults](options) {
-    const _ = privateData(this);
-
-    _.tag = options.tag || "div";
-    _.element = options.element || document.createElement(this.tag);
-
-    this.id(options.id);
-    this.className(options.className);
-    this.attributes(options.attributes);
-    this.contents(options.contents);
-    this.children(options.children);
-    this.forwardEventsTo(options.forwardEventsTo);
-    this.forwardChildrenTo(options.forwardChildrenTo);
-
-    for (let eventName in options.on) {
-      const eventHandler = options.on[eventName];
-      this.on(eventName, eventHandler);
-    }
   }
 }
