@@ -5,10 +5,12 @@ export default function trigger(eventName, ...eventArguments) {
 
   _.eventArguments = eventArguments;
 
-  let view = _.forwardEventsTo || this;
+  const views = _.forwardEventsTo || [this];
 
   const event = new Event(eventName);
-  view.element.dispatchEvent(event);
+  views.forEach(view => {
+    view.element.dispatchEvent(event);
+  });
 
   _.eventArguments = [];
 

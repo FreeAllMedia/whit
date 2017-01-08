@@ -1,20 +1,22 @@
 import View from "../../lib/whit/whit.js";
 
-describe("viewA.forwardEventsTo([view])", () => {
+describe("view.forwardEventsTo(...views)", () => {
   let viewA,
       viewB,
+      viewC,
       handler,
       event;
 
   beforeEach(() => {
     viewA = new View();
     viewB = new View();
+    viewC = new View();
     handler = sinon.spy();
 
     const eventName = "click";
     event = new Event(eventName);
 
-    viewA.forwardEventsTo(viewB);
+    viewA.forwardEventsTo(viewB, viewC);
     viewA.on(eventName, handler);
     viewA.trigger(eventName);
   });
@@ -27,16 +29,21 @@ describe("viewA.forwardEventsTo([view])", () => {
     handler.called.should.be.true;
   });
 
-  it("should callback with the view being forwarded to, and the event as arguments", () => {
-    handler.calledWith(viewB, event).should.be.true;
+  it("should callback with the views being forwarded to, and the event as arguments", () => {
+    [
+      handler.calledWith(viewB, event),
+      handler.calledWith(viewC, event)
+    ].should.eql([ true, true ]);
   });
 
-
   it("should be settable via options", () => {
-    viewA = new View({ forwardEventsTo: viewB });
+    viewA = new View({ forwardEventsTo: [ viewB, viewC ] });
     handler = sinon.spy();
     viewA.on("click", handler);
-    viewB.trigger("click");
-    handler.calledWith(viewB, event).should.be.true;
+    viewA.trigger("click");
+    [
+      handler.calledWith(viewB, event),
+      handler.calledWith(viewC, event)
+    ].should.eql([ true, true ]);
   });
 });

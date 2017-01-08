@@ -36,7 +36,7 @@ export default class Whit {
   /* Events */
   on(eventName, eventHandler)     { return this[include]("on", eventName, eventHandler); }
   trigger(eventName, ...args)     { return this[include]("trigger", eventName, ...args); }
-  forwardEventsTo(view)           { return this[include]("forwardEventsTo", view); }
+  forwardEventsTo(...views)       { return this[include]("forwardEventsTo", ...views); }
   forwardChildrenTo(view)         { return this[include]("forwardChildrenTo", view); }
   toString()                      { return this[include]("toString"); }
 

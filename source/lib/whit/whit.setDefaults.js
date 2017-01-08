@@ -11,7 +11,11 @@ export default function setDefaults(options) {
   this.attributes(options.attributes);
   this.contents(options.contents);
   this.children(options.children);
-  this.forwardEventsTo(options.forwardEventsTo);
+
+  if (options.forwardEventsTo) {
+    this.forwardEventsTo(...options.forwardEventsTo);
+  }
+
   this.forwardChildrenTo(options.forwardChildrenTo);
 
   for (let eventName in options.on) {

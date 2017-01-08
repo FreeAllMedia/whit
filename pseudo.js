@@ -1,7 +1,6 @@
 import View from "whit";
 
-export default (...children) => { return new Article({ children }); };
-
+export default function article(...children){ return new Article({ children }); }
 class Article extends View {
   get tag() { return "article"; }
 }
