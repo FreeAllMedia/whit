@@ -1,6 +1,6 @@
 {
   "name": "whit",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "A minimal programmatic view library with zero dependencies.",
   "main": "source/lib/whit/whit.js",
   "scripts": {
