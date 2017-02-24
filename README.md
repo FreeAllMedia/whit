@@ -1,6 +1,6 @@
 ![](./logo.png)
 
-**Note:** This is an *alpha* release of whit. All code is working, but the documentation is not yet completed.
+**Note:** This is an *alpha* release of whit with incomplete documentation.
 
 ```javascript
 import html, { body } from "whit-html";
