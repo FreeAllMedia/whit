@@ -1,8 +1,8 @@
 {
   "name": "whit",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "A minimal programmatic view library with zero dependencies.",
-  "main": "source/lib/whit/whit.js",
+  "main": "lib/whit.js",
   "scripts": {
     "test": "karma"
   },
@@ -29,6 +29,7 @@
     "karma-story-reporter": "^0.3.1",
     "karma-webpack": "^1.8.1",
     "mocha": "^3.2.0",
+    "rimraf": "^2.6.0",
     "run-sequence": "^1.2.2",
     "sinon": "^1.17.7",
     "webpack": "^1.14.0"
