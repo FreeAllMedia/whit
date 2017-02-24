@@ -6,13 +6,13 @@ module.exports = function (config) {
     frameworks: ["mocha", "chai", "sinon"],
     // Pre-process files
     preprocessors: {
-      "source/spec/**/*.js": ["webpack"]
+      "spec/**/*.js": ["webpack"]
     },
 
     // list of files / patterns to load in the browser
     files: [
-      {pattern: "source/**/*.js", watched: true, included: false, served: false},
-      {pattern: "source/spec/**/*.js", watched: true, included: true, served: true}
+      //{pattern: "lib/whit/whit.js", watched: true, included: false, served: false},
+      {pattern: "spec/**/*.js", watched: true, included: true, served: true}
     ],
 
     webpack: {
