@@ -1,5 +1,7 @@
 import privateData from "../utility/privateData.js";
 
+import "../utility/customEvents.js";
+
 const include = Symbol();
 
 export default class Whit {
@@ -15,7 +17,6 @@ export default class Whit {
   initialize() {}
 
   /* Read-Only Properties */
-  get element() { return privateData(this).element; }
   get tag() { return privateData(this).tag; }
 
   /* Attributes */

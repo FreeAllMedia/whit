@@ -24,4 +24,9 @@ describe("view.removeClassName([newClassName])", () => {
     view.removeClassName("world");
     view.element.className.should.eql("hello");
   });
+
+  it("should only remove the designated class name", () => {
+    view.removeClassName("image");
+    view.element.className.should.eql("hello world");
+  });
 });

@@ -1,5 +1,7 @@
 ![](./logo.png)
 
+**Note:** This is an *alpha* release of whit. All code is working, but the documentation is not yet completed.
+
 ```javascript
 import html, { body } from "whit-html";
 import form, {textField, select, option, checkbox, clearValue} from "whit-form";
@@ -71,6 +73,8 @@ body.append(
 **./views.js** :
 
 ```javascript
+import View from "whit";
+
 export function orderedList(...children) {
     return new class OrderedList extends View {
         initialize(options) {
@@ -98,7 +102,7 @@ const body = new class Body extends View {
 export { body };
 ```
 
-### Vanilla Syntax
+### Class Syntax
 
 * See exactly what's going with nothing masked.
 * Less complex than creating a factory wrapper for each view.
@@ -109,6 +113,7 @@ export { body };
 import { OrderedList, ListItem, Body } from "./views.js";
 
 const body = new Body();
+
 const orderedList = new OrderedList({
     children: [
         new ListItem({ contents: "One" }),
@@ -143,6 +148,72 @@ export class Body extends View {
         options.element = document.getElementByTagName("body")[0]
     }
 }
+```
+
+## Events
+
+Attach event handlers to views with `.on`, then trigger them with `.trigger`.
+
+```javascript
+import View from "whit";
+
+const myView = new View();
+
+myView.on("some-event", (view, event) => alert("Yep. It works."))
+
+myView.trigger("some-event");
+```
+
+Whit will trigger the `mount` event when a view is mounted to the DOM:
+
+```javascript
+import View from "whit";
+
+class Body extends View {
+    initialize(options) {
+        options.element = document.getElementByTagName("body")[0]
+    }
+}
+
+const bodyView = new Body();
+const myView = new View();
+
+myView.on("mount", (view, event) => alert("I'm now mounted in the DOM!"))
+
+bodyView.append(myView);
+```
+
+## Attributes
+
+Change attributes easily
+
+```javascript
+import View from "whit";
+
+const myView = new View();
+
+myView.on("some-event", (view, event) => alert("Yep. It works."))
+
+myView.trigger("some-event");
+```
+
+Whit will trigger the `mount` event when a view is mounted to the DOM:
+
+```javascript
+import View from "whit";
+
+class Body extends View {
+    initialize(options) {
+        options.element = document.getElementByTagName("body")[0]
+    }
+}
+
+const bodyView = new Body();
+const myView = new View();
+
+myView.on("mount", (view, event) => alert("I'm now mounted in the DOM!"))
+
+bodyView.append(myView);
 ```
 
 ## Getting Started
@@ -197,8 +268,6 @@ body.append(orderedList);
 ```
 
 ### Cleaner Syntax w/ Factories
-
-
 
 ### Add an ID
 

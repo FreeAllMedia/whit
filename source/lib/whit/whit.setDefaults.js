@@ -4,7 +4,8 @@ export default function setDefaults(options) {
   const _ = privateData(this);
 
   _.tag = options.tag || "div";
-  _.element = options.element || document.createElement(this.tag);
+
+  this.element = options.element || document.createElement(this.tag);
 
   this.id(options.id);
   this.className(options.className);

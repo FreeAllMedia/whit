@@ -7,7 +7,7 @@ export default function trigger(eventName, ...eventArguments) {
 
   const views = _.forwardEventsTo || [this];
 
-  const event = new Event(eventName);
+  const event = new CustomEvent(eventName);
   views.forEach(view => {
     view.element.dispatchEvent(event);
   });

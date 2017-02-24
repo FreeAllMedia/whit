@@ -14,7 +14,8 @@ describe("view.forwardEventsTo(...views)", () => {
     handler = sinon.spy();
 
     const eventName = "click";
-    event = new Event(eventName);
+    event = new CustomEvent(eventName);
+    console.log(event);
 
     viewA.forwardEventsTo(viewB, viewC);
     viewA.on(eventName, handler);
@@ -31,9 +32,11 @@ describe("view.forwardEventsTo(...views)", () => {
 
   it("should callback with the views being forwarded to, and the event as arguments", () => {
     [
-      handler.calledWith(viewB, event),
-      handler.calledWith(viewC, event)
-    ].should.eql([ true, true ]);
+      handler.firstCall.args[0] === viewB,
+      handler.firstCall.args[1].type === event.type,
+      handler.secondCall.args[0] === viewC,
+      handler.secondCall.args[1].type === event.type
+    ].should.eql([ true, true, true, true ]);
   });
 
   it("should be settable via options", () => {
@@ -42,8 +45,10 @@ describe("view.forwardEventsTo(...views)", () => {
     viewA.on("click", handler);
     viewA.trigger("click");
     [
-      handler.calledWith(viewB, event),
-      handler.calledWith(viewC, event)
-    ].should.eql([ true, true ]);
+      handler.firstCall.args[0] === viewB,
+      handler.firstCall.args[1].type === event.type,
+      handler.secondCall.args[0] === viewC,
+      handler.secondCall.args[1].type === event.type
+    ].should.eql([ true, true, true, true ]);
   });
 });
