@@ -1,7 +1,7 @@
 {
   "name": "whit",
   "version": "0.0.0",
-  "description": "A zero-dependency minimalistic view library for building user interfaces.",
+  "description": "A minimal programmatic view library with zero dependencies.",
   "main": "source/lib/whit/whit.js",
   "scripts": {
     "test": "karma"
