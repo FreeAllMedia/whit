@@ -15,7 +15,6 @@ describe("view.forwardEventsTo(...views)", () => {
 
     const eventName = "click";
     event = new CustomEvent(eventName);
-    console.log(event);
 
     viewA.forwardEventsTo(viewB, viewC);
     viewA.on(eventName, handler);
